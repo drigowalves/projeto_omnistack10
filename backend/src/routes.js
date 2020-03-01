@@ -1,10 +1,15 @@
 const { Router } = require('express');
+const DevController = require('./controller/DevController')
+const SearchController = require('./controller/SearchController');
+
 
 const routes = Router();
 
-routes.post('/users', (request, response) => {
-    console.log(request.body)
-    return response.json({message: 'Hello World'});
-});
+routes.get('/devs', DevController.index);
+routes.post('/devs', DevController.store);
+routes.put('/devs/:github_username', DevController.update);
+routes.delete('/devs/:github_username', DevController.destroy);
+
+routes.get('/search', SearchController.index);
 
 module.exports = routes;
